@@ -1,0 +1,51 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "https://repo.spring.io/libs-release" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.1.RELEASE")
+    }
+}
+ 
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+// Set Java 1.6 compatability
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+// Published Application Version
+version = '1.0.0'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+    maven { url "https://repo.spring.io/libs-release" }
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+    //compile time
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf:1.2.1.RELEASE")
+    compile 'ch.qos.logback:logback-classic:1.1.2'
+    compile 'org.springframework:spring-webmvc:4.1.4.RELEASE'
+    //included in the compile only, excluded from the war
+    providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+
+    //testing
+    testCompile "junit:junit:4.12"
+}
+
+/*
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2.1'
+}
+*/
